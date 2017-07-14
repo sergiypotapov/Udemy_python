@@ -1,5 +1,16 @@
 import urllib.request
+import urllib.parse
 
-req = urllib.request.urlopen("https://google.com")
 
-print(req.read())
+values = {'q':'python programming tutorials'}
+
+data = urllib.parse.urlencode(values)
+url = "https://google.com/search?"+data
+#data = data.encode('utf-8')
+
+req = urllib.request.Request(url)
+resp = urllib.request.urlopen(req)
+
+resp_data = resp.read()
+
+print(resp_data)
